@@ -1,0 +1,22 @@
+<template>
+  <div repeat.for="post of posts">
+    <div class="blog-post">
+      <h2 class="blog-post-title">${post.title}</h2>
+      <p class="blog-post-meta">
+        ${post.createdAt} by <a href="#">${post.author}</a>
+      </p>
+
+      <p>
+        <a href="" repeat.for="tag of post.tags">
+          <span class="badge badge-pill badge-info">${tag}</span>
+        </a>
+      </p>
+
+      <p>${post.body}</p>
+    </div>
+    <a route-href="route: post-view; params.bind: { slug: post.slug }">
+      View Post &raquo;
+    </a>
+    <hr />
+  </div>
+</template>
