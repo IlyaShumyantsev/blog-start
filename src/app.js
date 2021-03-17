@@ -14,7 +14,7 @@ export class App {
 
   attached() {
     this.currentUser = this.authService.currentUser;
-    this.eventAggregator.subscribe("user", (user) => {
+    this.subscribtion = this.eventAggregator.subscribe("user", (user) => {
       this.currentUser = this.authService.currentUser;
     });
 
@@ -37,7 +37,24 @@ export class App {
       });
   }
 
+  detached() {
+    this.subscribtion.dispose();
+  }
+
+  logout() {
+    this.authService
+      .logout()
+      .then((data) => {
+        this.eventAggregator.publish("user", null);
+        console.log(data.success);
+      })
+      .catch((error) => {
+        this.error = error.message;
+      });
+  }
+
   configureRouter(config, router) {
+    this.router = router;
     config.title = "My blog";
     config.map([
       {
