@@ -1,15 +1,6 @@
 <template>
+  <require from="../resources/elements/blog-post"></require>
+
   <div class="alert alert-danger" if.bind="error">${error}</div>
-  <div class="blog-post" if.bind="!error">
-    <h2 class="blog-post-title">${post.title}</h2>
-    <p class="blog-post-meta">
-      ${post.createdAt} by <a href="#">${post.author}</a>
-    </p>
-    <p>
-      <a href="" repeat.for="tag of post.tags">
-        <span class="badge badge-pill badge-info">${tag}</span>
-      </a>
-    </p>
-    <p>${post.body}</p>
-  </div>
+  <blog-post post.bind="post"></blog-post>
 </template>

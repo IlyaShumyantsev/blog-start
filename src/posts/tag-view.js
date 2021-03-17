@@ -2,17 +2,18 @@ import { inject } from "aurelia-framework";
 import { PostService } from "../common/services/post-service";
 
 @inject(PostService)
-export class View {
+export class TagView {
   constructor(PostService) {
     this.postService = PostService;
   }
 
   activate(params) {
+    this.tag = params.tag;
     this.error = "";
     this.postService
-      .find(params.slug)
+      .postsByTag(this.tag)
       .then((data) => {
-        this.post = data.post;
+        this.posts = data.posts;
       })
       .catch((error) => {
         this.error = error.message;

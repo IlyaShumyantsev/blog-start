@@ -8,12 +8,14 @@ export class Index {
   }
 
   attached() {
-    this.postService.allPostPreviews().then((data) => {
-      if (data.error) {
-        console.log(data.eror);
-      } else {
+    this.error = "";
+    this.postService
+      .allPostPreviews()
+      .then((data) => {
         this.posts = data.posts;
-      }
-    });
+      })
+      .catch((error) => {
+        this.error = error.message;
+      });
   }
 }
