@@ -18,6 +18,16 @@ export class App {
       this.currentUser = this.authService.currentUser;
     });
 
+    this.updateSidebar();
+    this.postSubscribtion = this.eventAggregator.subscribe(
+      "post-updated",
+      (updateAt) => {
+        this.updateSidebar();
+      }
+    );
+  }
+
+  updateSidebar() {
     this.postSetvice
       .allTags()
       .then((data) => {
@@ -39,6 +49,7 @@ export class App {
 
   detached() {
     this.subscribtion.dispose();
+    this.postSubscribtion.dispose();
   }
 
   logout() {
@@ -87,6 +98,18 @@ export class App {
         name: "login",
         moduleId: PLATFORM.moduleName("auth/login"),
         title: "Log In",
+      },
+      {
+        route: "signup",
+        name: "signup",
+        moduleId: PLATFORM.moduleName("auth/signup"),
+        title: "Sigh Up",
+      },
+      {
+        route: "create-post",
+        name: "create-post",
+        moduleId: PLATFORM.moduleName("posts/create"),
+        title: "Create Post",
       },
     ]);
   }
