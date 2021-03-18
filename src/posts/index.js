@@ -9,6 +9,7 @@ export class Index {
 
   attached() {
     this.error = "";
+
     this.postService
       .allPostPreviews()
       .then((data) => {

@@ -17,6 +17,7 @@ export class Login {
 
   login() {
     this.error = null;
+
     this.authService
       .login(this.name)
       .then((data) => {

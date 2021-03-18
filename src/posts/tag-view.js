@@ -10,6 +10,7 @@ export class TagView {
   activate(params) {
     this.tag = params.tag;
     this.error = "";
+
     this.postService
       .postsByTag(this.tag)
       .then((data) => {

@@ -55,6 +55,7 @@ export class App {
 
   configureRouter(config, router) {
     this.router = router;
+
     config.title = "My blog";
     config.map([
       {

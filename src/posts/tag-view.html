@@ -1,13 +1,6 @@
 <template>
-  <require from="../resources/elements/blog-post"></require>
-
-  <div class="alert alert-danger" if.bind="error">${error}</div>
-  <div class="alert alert-dark">Viewing posts by tag: ${tag}</div>
-  <div repeat.for="post of posts">
-    <blog-post post.bind="post"></blog-post>
-    <a route-href="route: post-view; params.bind: { slug: post.slug }">
-      View Post &raquo;
-    </a>
-    <hr />
-  </div>
+  <require from="../resources/elements/post-list.html"></require>
+  <post-list error.bind="error" posts.bind="posts">
+    Viewing posts tag <strong>${tag}</strong>
+  </post-list>
 </template>

@@ -10,6 +10,7 @@ export class ArchiveView {
   activate(params) {
     this.archive = params.archive;
     this.error = "";
+
     this.postService
       .postsByArchive(this.archive)
       .then((data) => {
